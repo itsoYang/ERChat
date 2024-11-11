@@ -1,6 +1,9 @@
 package com.erchat.designer.service;
 
+import java.util.List;
+
 import com.erchat.designer.dto.SaveDTO;
+import com.erchat.designer.model.ERNode;
 
 /**
  * @author oYang
@@ -9,6 +12,6 @@ import com.erchat.designer.dto.SaveDTO;
  */
 public interface IDesignerService {
 
-	void save(SaveDTO saveDTO);
+	void save(List<ERNode> erNodes);
 
 }
