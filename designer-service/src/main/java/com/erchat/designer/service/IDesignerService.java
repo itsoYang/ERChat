@@ -1,5 +1,7 @@
 package com.erchat.designer.service;
 
+import com.erchat.designer.dto.SaveDTO;
+
 /**
  * @author oYang
  * @Description 设计器服务
@@ -7,6 +9,6 @@ package com.erchat.designer.service;
  */
 public interface IDesignerService {
 
-	void save();
+	void save(SaveDTO saveDTO);
 
 }

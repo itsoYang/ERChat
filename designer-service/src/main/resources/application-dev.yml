@@ -1,4 +1,4 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/erchat
+      uri: mongodb://172.16.1.23:27017/ERChat

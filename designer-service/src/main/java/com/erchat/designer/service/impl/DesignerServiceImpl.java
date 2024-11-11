@@ -1,5 +1,6 @@
 package com.erchat.designer.service.impl;
 
+import com.erchat.designer.dto.SaveDTO;
 import com.erchat.designer.service.IDesignerService;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class DesignerServiceImpl implements IDesignerService {
     }
 
     @Override
-    public void save() {
-
+    public void save(SaveDTO saveDTO) {
+		mongoTemplate.save(saveDTO);
     }
 }
