@@ -1,0 +1,16 @@
+server:
+  port: 18082
+spring:
+  application:
+    name: project-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.204.128:8848
+logging:
+  level:
+    com.erchat: debug
+  pattern:
+    dateformat: HH:mm:ss:SSS
+  file:
+    path: "logs/${spring.application.name}"

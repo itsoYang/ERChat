@@ -2,12 +2,14 @@ package com.erchat.designer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author oYang
  * @Description TODO
  * @createTime 2024年11月06日 16:14:00
  */
+@EnableFeignClients
 @SpringBootApplication
 public class DesignerApplication {
 	public static void main(String[] args) {

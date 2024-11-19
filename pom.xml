@@ -9,6 +9,8 @@
 
     <modules>
         <module>designer-service</module>
+        <module>project-service</module>
+        <module>erchat-api</module>
     </modules>
 
     <parent>
