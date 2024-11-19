@@ -3,7 +3,7 @@ package com.erchat.designer.dto;
 import java.io.Serializable;
 import java.util.List;
 
-import com.erchat.designer.model.ERNode;
+import com.erchat.designer.model.ERDiagram;
 
 /**
  * @author oYang
@@ -14,13 +14,13 @@ public class SaveDTO implements Serializable {
 
 	private static final long serialVersionUID = -7174391187367969984L;
 
-	private List<ERNode> nodes;
+	private List<ERDiagram> nodes;
 
-	public List<ERNode> getNodes() {
+	public List<ERDiagram> getNodes() {
 		return nodes;
 	}
 
-	public void setNodes(List<ERNode> nodes) {
+	public void setNodes(List<ERDiagram> nodes) {
 		this.nodes = nodes;
 	}
 }

@@ -3,13 +3,13 @@ package com.erchat.designer.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.erchat.designer.dto.SaveDTO;
-import com.erchat.designer.model.ERNode;
+import com.erchat.designer.model.ERDiagram;
 import com.erchat.designer.service.IDesignerService;
 
 /**
@@ -25,7 +25,9 @@ public class DesignerController {
 	private IDesignerService designerService;
 
 	@PostMapping("/save")
-	public void save(@RequestBody List<ERNode> erNodes){
-		designerService.save(erNodes);
+	public ResponseEntity save(@RequestBody ERDiagram erDiagram){
+		designerService.save(erDiagram);
+
+		return ResponseEntity.ok().build();
 	}
 }
