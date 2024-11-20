@@ -10,9 +10,6 @@ import lombok.NoArgsConstructor;
 public class ProjectDTO {
 
     private String id;
-    private String name;
-    private String desc;
-    private String createTime;
-    private String updateTime;
-    private String status;
+    private String projectName;
+    private String projectDesc;
 }

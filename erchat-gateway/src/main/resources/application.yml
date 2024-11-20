@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: erchat-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.204.128:8848
+    gateway:
+      routes: # 路由配置
+        - id: designer_route
+          uri: lb://designer-service
+          predicates:
+            - Path=/designer/**
+        - id: project_route
+          uri: lb://project-service
+          predicates:
+            - Path=/project/**

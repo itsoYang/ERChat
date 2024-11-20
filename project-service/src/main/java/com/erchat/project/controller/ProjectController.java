@@ -1,26 +1,41 @@
 package com.erchat.project.controller;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.erchat.common.domain.APIResponse;
 import com.erchat.project.dto.ProjectDTO;
-import com.erchat.project.service.IProjectService;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.erchat.project.model.Project;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.time.LocalDateTime;
+import java.util.List;
+
+@RequiredArgsConstructor
+@RestController
 @RequestMapping("/project")
-@AllArgsConstructor
 public class ProjectController {
 
-    private final IProjectService projectService;
+    private final IService<Project> projectService;
 
-    public String createProject(@RequestParam ProjectDTO projectDTO){
-        projectService.createProject(projectDTO);
-        return null;
+    @PostMapping("/save")
+    public APIResponse<Object> createProject(@RequestBody ProjectDTO projectDTO){
+
+        Project project = new Project();
+        BeanUtils.copyProperties(projectDTO, project);
+        // TODO 获取当前用户
+        project.setCreateUser("admin");
+        LocalDateTime now = LocalDateTime.now();
+        project.setCreateTime(now);
+        project.setUpdateTime(now);
+        projectService.save(project);
+
+        return APIResponse.success("保存成功");
     }
 
-    @RequestMapping("/list")
-    public String getProjectList(){
-        return null;
+    @GetMapping("/list")
+    public APIResponse<List<Project>> getProjectList(){
+        List<Project> listOfProject = projectService.list();
+        return APIResponse.success(listOfProject);
     }
 }

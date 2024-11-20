@@ -11,6 +11,8 @@
         <module>designer-service</module>
         <module>project-service</module>
         <module>erchat-api</module>
+        <module>erchat-gateway</module>
+        <module>erchat-common</module>
     </modules>
 
     <parent>
