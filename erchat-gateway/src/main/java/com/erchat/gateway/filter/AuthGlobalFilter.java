@@ -1,7 +1,7 @@
 package com.erchat.gateway.filter;
 
-import com.erchat.common.exception.UnauthorizedException;
 import com.erchat.gateway.config.AuthProperties;
+import com.erchat.gateway.exception.UnauthorizedException;
 import com.erchat.gateway.utils.JwtTool;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
