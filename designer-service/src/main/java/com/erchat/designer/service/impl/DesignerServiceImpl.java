@@ -22,4 +22,10 @@ public class DesignerServiceImpl implements IDesignerService {
 		// 2. 图元素信息插入 MongoDB
 		mongoTemplate.insert(erDiagram);
     }
+
+	@Override
+	public void diagramCreate(String projectId) {
+
+	}
+
 }

@@ -11,4 +11,5 @@ public interface IDesignerService {
 
 	void save(ERDiagram erDiagram);
 
+	void diagramCreate(String projectId);
 }
