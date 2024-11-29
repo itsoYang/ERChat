@@ -1,5 +1,9 @@
 package com.erchat.project.model;
 
+import java.time.LocalDateTime;
+
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +17,6 @@ public class Diagram {
     private String name;
     private Integer visibility;
     private String createUser;
-    private String createTime;
-    private String updateTime;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
 }
