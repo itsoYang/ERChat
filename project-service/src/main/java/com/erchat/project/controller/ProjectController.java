@@ -40,7 +40,7 @@ public class ProjectController {
     }
 
 	@DeleteMapping("/{projectId}")
-	public APIResponse<Object> deleteProjectById(@PathVariable String projectId){
+	public APIResponse<Object> deleteProjectById(@PathVariable("projectId") String projectId){
 		projectService.removeById(projectId);
 		return APIResponse.success("删除成功");
 	}
