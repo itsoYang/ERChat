@@ -38,4 +38,18 @@ public class ProjectController {
         List<Project> listOfProject = projectService.list();
         return APIResponse.success(listOfProject);
     }
+
+	@DeleteMapping("/{projectId}")
+	public APIResponse<Object> deleteProjectById(@PathVariable String projectId){
+		projectService.removeById(projectId);
+		return APIResponse.success("删除成功");
+	}
+
+	@PutMapping()
+	public APIResponse<Object> updateProjectById(@RequestBody ProjectDTO projectDTO){
+		Project project = new Project();
+		BeanUtils.copyProperties(projectDTO, project);
+		projectService.updateById(project);
+		return APIResponse.success("更新成功");
+	}
 }
