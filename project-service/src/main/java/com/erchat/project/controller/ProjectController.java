@@ -1,14 +1,13 @@
 package com.erchat.project.controller;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.erchat.common.domain.APIResponse;
 import com.erchat.project.dto.ProjectDTO;
 import com.erchat.project.model.Project;
+import com.erchat.project.service.IProjectService;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -16,40 +15,48 @@ import java.util.List;
 @RequestMapping("/project")
 public class ProjectController {
 
-    private final IService<Project> projectService;
+    private final IProjectService projectService;
 
-    @PostMapping("/save")
+    @PostMapping()
     public APIResponse<Object> createProject(@RequestBody ProjectDTO projectDTO){
 
-        Project project = new Project();
-        BeanUtils.copyProperties(projectDTO, project);
-        // TODO 获取当前用户
-        project.setCreateUser("admin");
-        LocalDateTime now = LocalDateTime.now();
-        project.setCreateTime(now);
-        project.setUpdateTime(now);
-        projectService.save(project);
+		try {
+			projectService.createProject(projectDTO);
+		} catch (Exception e) {
+			return APIResponse.error("创建失败");
+		}
 
-        return APIResponse.success("保存成功");
+		return APIResponse.success("创建成功");
     }
 
-    @GetMapping("/list")
+    @GetMapping()
     public APIResponse<List<Project>> getProjectList(){
-        List<Project> listOfProject = projectService.list();
-        return APIResponse.success(listOfProject);
+		List<Project> listOfProject = null;
+		try {
+			listOfProject = projectService.list();
+		} catch (Exception e) {
+			return APIResponse.error("查询失败");
+		}
+		return APIResponse.success(listOfProject);
     }
 
 	@DeleteMapping("/{projectId}")
 	public APIResponse<Object> deleteProjectById(@PathVariable("projectId") String projectId){
-		projectService.removeById(projectId);
+		try {
+			projectService.removeById(projectId);
+		} catch (Exception e) {
+			return APIResponse.error("删除失败");
+		}
 		return APIResponse.success("删除成功");
 	}
 
 	@PutMapping()
-	public APIResponse<Object> updateProjectById(@RequestBody ProjectDTO projectDTO){
-		Project project = new Project();
-		BeanUtils.copyProperties(projectDTO, project);
-		projectService.updateById(project);
+	public APIResponse<Object> updateProject(@RequestBody ProjectDTO projectDTO){
+		try {
+			projectService.updateProject(projectDTO);
+		} catch (Exception e) {
+			return APIResponse.error("更新失败");
+		}
 		return APIResponse.success("更新成功");
 	}
 }

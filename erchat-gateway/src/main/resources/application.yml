@@ -11,14 +11,14 @@ spring:
         server-addr: 192.168.204.128:8848
     gateway:
       routes: # 路由配置
-        - id: designer_route
-          uri: lb://designer-service
+        - id: diagram_route
+          uri: lb://diagram-service
           predicates:
-            - Path=/designer/**
+            - Path=/diagram/**
         - id: project_route
           uri: lb://project-service
           predicates:
-            - Path=/project/**,/diagram/**
+            - Path=/project/**
 
 
 erchat:

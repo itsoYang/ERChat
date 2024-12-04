@@ -1,9 +1,9 @@
-package com.erchat.designer.dto;
+package com.erchat.diagram.dto;
 
 import java.io.Serializable;
 import java.util.List;
 
-import com.erchat.designer.model.ERDiagram;
+import com.erchat.diagram.model.ERDiagram;
 
 /**
  * @author oYang

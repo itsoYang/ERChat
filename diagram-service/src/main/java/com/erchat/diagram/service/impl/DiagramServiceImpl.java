@@ -1,4 +1,4 @@
-package com.erchat.project.service.impl;
+package com.erchat.diagram.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,26 +6,40 @@ import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.erchat.project.constant.DiagramVisibility;
-import com.erchat.project.dto.DiagramSaveDTO;
-import com.erchat.project.mapper.IDiagramMapper;
-import com.erchat.project.model.Diagram;
-import com.erchat.project.service.IDiagramService;
-import com.erchat.project.vo.DiagramListVO;
+import com.erchat.diagram.constant.DiagramVisibility;
+import com.erchat.diagram.dto.DiagramCardDTO;
+import com.erchat.diagram.mapper.IDiagramMapper;
+import com.erchat.diagram.model.Diagram;
+import com.erchat.diagram.model.ERDiagram;
+import com.erchat.diagram.service.IDiagramService;
+import com.erchat.diagram.vo.DiagramCardVO;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
+@Transactional
 @RequiredArgsConstructor
+@Service
 public class DiagramServiceImpl extends ServiceImpl<IDiagramMapper, Diagram> implements IDiagramService {
 
+    private final MongoTemplate mongoTemplate;
+
+    @Override
+    public void save(ERDiagram erDiagram) {
+		// TODO 1.插入表 diagrams
+
+		// 2. 图元素信息插入 MongoDB
+		mongoTemplate.insert(erDiagram);
+    }
+
 	@Override
-	public String diagramCreate(DiagramSaveDTO diagramSaveDTO) {
+	public String createDiagramCard(DiagramCardDTO diagramCardDTO) {
 		Diagram diagram = new Diagram();
-		BeanUtils.copyProperties(diagramSaveDTO, diagram);
+		BeanUtils.copyProperties(diagramCardDTO, diagram);
 
 		// TODO 获取当前用户
 		diagram.setCreateUser("admin");
@@ -33,7 +47,7 @@ public class DiagramServiceImpl extends ServiceImpl<IDiagramMapper, Diagram> imp
 		diagram.setCreateTime(now);
 		diagram.setUpdateTime(now);
 
-		Integer code = DiagramVisibility.getCodeByName(diagramSaveDTO.getVisibility());
+		Integer code = DiagramVisibility.getCodeByName(diagramCardDTO.getVisibility());
 		diagram.setVisibility(code);
 
 		save(diagram);
@@ -42,11 +56,11 @@ public class DiagramServiceImpl extends ServiceImpl<IDiagramMapper, Diagram> imp
 	}
 
 	@Override
-	public List<DiagramListVO> queryDiagramListByProjectId(String projectId) {
+	public List<DiagramCardVO> queryDiagramListByProjectId(String projectId) {
 		QueryWrapper<Diagram> queryWrapper = new QueryWrapper<Diagram>().eq("project_id", projectId);
 		List<Diagram> listOfDiagram = list(queryWrapper);
 		return listOfDiagram.stream().map(diagram -> {
-			DiagramListVO diagramListVO = new DiagramListVO();
+			DiagramCardVO diagramListVO = new DiagramCardVO();
 			BeanUtils.copyProperties(diagram, diagramListVO);
 			diagramListVO.setThumbnail("");
 			String label = DiagramVisibility.getNameByCode(diagram.getVisibility());
@@ -54,4 +68,5 @@ public class DiagramServiceImpl extends ServiceImpl<IDiagramMapper, Diagram> imp
 			return diagramListVO;
 		}).collect(Collectors.toList());
 	}
+
 }

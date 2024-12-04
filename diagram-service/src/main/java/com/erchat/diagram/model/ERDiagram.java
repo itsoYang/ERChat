@@ -1,4 +1,4 @@
-package com.erchat.designer.model;
+package com.erchat.diagram.model;
 
 import java.util.List;
 

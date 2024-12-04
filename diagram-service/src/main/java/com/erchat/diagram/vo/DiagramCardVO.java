@@ -1,4 +1,4 @@
-package com.erchat.project.vo;
+package com.erchat.diagram.vo;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DiagramListVO {
+public class DiagramCardVO {
 
 	private String id;
 	private String projectId;

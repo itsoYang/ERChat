@@ -14,9 +14,9 @@ public interface IProjectService extends IService<Project> {
      */
     void createProject(ProjectDTO projectDTO);
 
-    /**
-     * 获取项目列表（全部）
-     * @return 项目列表
-     */
-    List<ProjectDTO> getProjectList();
+	/**
+	 * 更新项目
+	 * @param projectDTO 项目信息
+	 */
+	void updateProject(ProjectDTO projectDTO);
 }

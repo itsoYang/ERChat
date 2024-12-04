@@ -1,4 +1,4 @@
-package com.erchat.project.constant;
+package com.erchat.diagram.constant;
 
 /**
  * @author oYang

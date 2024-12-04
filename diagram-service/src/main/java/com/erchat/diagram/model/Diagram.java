@@ -1,8 +1,6 @@
-package com.erchat.project.model;
+package com.erchat.diagram.model;
 
 import java.time.LocalDateTime;
-
-import com.baomidou.mybatisplus.annotation.TableName;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
