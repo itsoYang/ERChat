@@ -30,8 +30,8 @@ public class DiagramController {
 
 	private final IDiagramService diagramService;
 
-	@PostMapping("/save")
-	public APIResponse<Object> save(String projectId, String name, String visibility, @RequestBody ERDiagram erDiagram){
+	@PostMapping()
+	public APIResponse<Object> saveDiagram( @RequestBody ERDiagram erDiagram){
 		diagramService.save(erDiagram);
 
 		return APIResponse.success("保存成功");
@@ -61,6 +61,11 @@ public class DiagramController {
 		return APIResponse.success(listOfDiagramCard);
 	}
 
+	/**
+	 * 删除项目下的所有ER图描述卡片及对应的ER图信息
+	 * @param projectId 项目id
+	 * @return APIResponse
+	 */
 	@DeleteMapping("/{projectId}")
 	public APIResponse<Object> deleteDiagramByProjectId(@PathVariable("projectId") String projectId){
 		try {
