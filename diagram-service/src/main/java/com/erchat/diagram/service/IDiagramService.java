@@ -20,4 +20,6 @@ public interface IDiagramService extends IService<Diagram> {
 	String createDiagramCard(DiagramCardDTO diagramCardDTO);
 
 	List<DiagramCardVO> queryDiagramListByProjectId(String projectId);
+
+	void deleteDiagramByProjectId(String projectId);
 }

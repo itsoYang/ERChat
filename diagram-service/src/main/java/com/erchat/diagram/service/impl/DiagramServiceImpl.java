@@ -69,4 +69,10 @@ public class DiagramServiceImpl extends ServiceImpl<IDiagramMapper, Diagram> imp
 		}).collect(Collectors.toList());
 	}
 
+	@Override
+	public void deleteDiagramByProjectId(String projectId) {
+		// TODO 查询出所有 diagramId 根据diagramId 删除MongoDB中的数据
+		remove(new QueryWrapper<Diagram>().eq("project_id", projectId));
+	}
+
 }

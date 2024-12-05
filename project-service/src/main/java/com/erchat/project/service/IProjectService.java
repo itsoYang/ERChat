@@ -19,4 +19,10 @@ public interface IProjectService extends IService<Project> {
 	 * @param projectDTO 项目信息
 	 */
 	void updateProject(ProjectDTO projectDTO);
+
+	/**
+	 * 删除项目
+	 * @param projectId 项目ID
+	 */
+	void deleteProjectById(String projectId);
 }

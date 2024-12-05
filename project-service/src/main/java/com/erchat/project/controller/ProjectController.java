@@ -43,7 +43,7 @@ public class ProjectController {
 	@DeleteMapping("/{projectId}")
 	public APIResponse<Object> deleteProjectById(@PathVariable("projectId") String projectId){
 		try {
-			projectService.removeById(projectId);
+			projectService.deleteProjectById(projectId);
 		} catch (Exception e) {
 			return APIResponse.error("删除失败");
 		}

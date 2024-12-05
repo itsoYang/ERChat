@@ -2,6 +2,7 @@ package com.erchat.diagram.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,5 +59,16 @@ public class DiagramController {
 		List<DiagramCardVO> listOfDiagramCard = diagramService.queryDiagramListByProjectId(projectId);
 
 		return APIResponse.success(listOfDiagramCard);
+	}
+
+	@DeleteMapping("/{projectId}")
+	public APIResponse<Object> deleteDiagramByProjectId(@PathVariable("projectId") String projectId){
+		try {
+			diagramService.deleteDiagramByProjectId(projectId);
+		} catch (Exception e) {
+			return APIResponse.error("删除失败");
+		}
+
+		return APIResponse.success("删除成功");
 	}
 }
