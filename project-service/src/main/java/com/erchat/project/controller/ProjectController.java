@@ -33,7 +33,7 @@ public class ProjectController {
     public APIResponse<List<Project>> getProjectList(){
 		List<Project> listOfProject = null;
 		try {
-			listOfProject = projectService.list();
+			listOfProject = projectService.lambdaQuery().orderByDesc(true, Project::getUpdateTime).list();
 		} catch (Exception e) {
 			return APIResponse.error("查询失败");
 		}
