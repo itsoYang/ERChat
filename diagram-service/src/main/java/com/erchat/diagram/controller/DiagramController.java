@@ -30,11 +30,28 @@ public class DiagramController {
 
 	private final IDiagramService diagramService;
 
+	/**
+	 * 保存ER图信息到MongoDB
+	 * @param erDiagram ER图信息 JSON
+	 * @return APIResponse
+	 */
 	@PostMapping()
 	public APIResponse<Object> saveDiagram( @RequestBody ERDiagram erDiagram){
 		diagramService.save(erDiagram);
 
 		return APIResponse.success("保存成功");
+	}
+
+	/**
+	 * 查询ER图信息
+	 * @param diagramId ER图ID
+	 * @return ER图信息 JSON
+	 */
+	@GetMapping("/{diagramId}")
+	public APIResponse<ERDiagram> queryDiagramById(@PathVariable("diagramId") String diagramId){
+		ERDiagram erDiagram = diagramService.queryDiagramById(diagramId);
+
+		return APIResponse.success(erDiagram);
 	}
 
 	/**

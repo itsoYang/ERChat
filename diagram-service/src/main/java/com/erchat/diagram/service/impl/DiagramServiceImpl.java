@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
-@Transactional
+
 @RequiredArgsConstructor
 @Service
 public class DiagramServiceImpl extends ServiceImpl<IDiagramMapper, Diagram> implements IDiagramService {
@@ -29,12 +29,19 @@ public class DiagramServiceImpl extends ServiceImpl<IDiagramMapper, Diagram> imp
     private final MongoTemplate mongoTemplate;
 
     @Override
+	@Transactional
     public void save(ERDiagram erDiagram) {
-		// TODO 1.插入表 diagrams
+		// 1.更新表 diagram 信息
+		lambdaUpdate().set(Diagram::getUpdateTime, LocalDateTime.now()).eq(Diagram::getId, erDiagram.getId());
 
 		// 2. 图元素信息插入 MongoDB
 		mongoTemplate.insert(erDiagram);
     }
+
+	@Override
+	public ERDiagram queryDiagramById(String diagramId) {
+		return mongoTemplate.findById(diagramId, ERDiagram.class);
+	}
 
 	@Override
 	public String createDiagramCard(DiagramCardDTO diagramCardDTO) {

@@ -17,6 +17,8 @@ public interface IDiagramService extends IService<Diagram> {
 
 	void save(ERDiagram erDiagram);
 
+	ERDiagram queryDiagramById(String diagramId);
+
 	String createDiagramCard(DiagramCardDTO diagramCardDTO);
 
 	List<DiagramCardVO> queryDiagramListByProjectId(String projectId);
