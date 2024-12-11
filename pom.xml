@@ -13,6 +13,7 @@
         <module>erchat-api</module>
         <module>erchat-gateway</module>
         <module>erchat-common</module>
+        <module>user-service</module>
     </modules>
 
     <parent>
