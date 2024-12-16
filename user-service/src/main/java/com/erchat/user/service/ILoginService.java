@@ -1,8 +1,11 @@
 package com.erchat.user.service;
 
-public interface ILoginService {
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.erchat.user.model.User;
 
-    String loginOfPassword(String phone, String password);
+public interface ILoginService extends IService<User> {
+
+    User loginOfPassword(String phone, String password);
 
     String loginOfVerifyCode(String phone, String verifyCode);
 }
