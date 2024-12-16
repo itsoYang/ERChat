@@ -7,12 +7,14 @@ import com.erchat.user.utils.JwtTool;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Duration;
 
 @Slf4j
-@RestController("/login")
+@RestController()
+@RequestMapping("/login")
 @RequiredArgsConstructor
 public class LoginController {
 
@@ -21,9 +23,9 @@ public class LoginController {
     private final JwtTool jwtTool;
 
     @PostMapping("/password")
-    public APIResponse<String> loginOfPassword(String phone, String password){
-        log.info("phone:{},password:{}", phone, password);
-        User user = loginService.loginOfPassword(phone, password);
+    public APIResponse<String> loginOfPassword(String username, String password){
+        log.info("phone:{},password:{}", username, password);
+        User user = loginService.loginOfPassword(username, password);
         if (user == null){
             return APIResponse.error("用户名或密码错误");
         }

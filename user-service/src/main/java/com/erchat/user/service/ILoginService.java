@@ -5,7 +5,7 @@ import com.erchat.user.model.User;
 
 public interface ILoginService extends IService<User> {
 
-    User loginOfPassword(String phone, String password);
+    User loginOfPassword(String username, String password);
 
     String loginOfVerifyCode(String phone, String verifyCode);
 }

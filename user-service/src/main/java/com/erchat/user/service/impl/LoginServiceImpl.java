@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements ILoginService {
     @Override
-    public User loginOfPassword(String phone, String password) {
-        return lambdaQuery().eq(User::getNickName, phone).eq(User::getPassword, password).one();
+    public User loginOfPassword(String username, String password) {
+        return lambdaQuery().eq(User::getUserName, username).eq(User::getPassword, password).one();
     }
 
     @Override

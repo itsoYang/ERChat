@@ -1,10 +1,4 @@
-server:
-  port: 18083
 spring:
-  application:
-    name: user-service
-  profiles:
-    active: local
   cloud:
     nacos:
       discovery:
@@ -14,13 +8,3 @@ spring:
     url: jdbc:mysql://192.168.204.128:3306/ERChat?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: root
-logging:
-  level:
-    com.erchat: debug
-  pattern:
-    dateformat: HH:mm:ss:SSS
-  file:
-    path: "logs/${spring.application.name}"
-feign:
-  okhttp:
-    enabled: true
