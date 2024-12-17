@@ -1,12 +1,14 @@
 package com.erchat.user.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
  * @author oYang
- * @Description TODO
+ * @Description 用户信息表
  * @createTime 2024年12月11日 17:40:00
  */
 @Data
@@ -15,13 +17,15 @@ import lombok.NoArgsConstructor;
 public class User {
 
 	private String id;
-	private String userName;
+	private String username;
 	private String password;
-	private String nickName;
+	@TableField(exist = false)
+	private String nickname;
 	private String avatar;
+	@TableField(exist = false)
 	private String email;
 	private String phone;
-	private String sex;
+	@TableField(exist = false)
 	private String status;
 	private String createTime;
 	private String updateTime;
