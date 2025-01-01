@@ -2,6 +2,7 @@ package com.erchat.diagram.model;
 
 import java.util.List;
 
+import cn.hutool.json.JSONObject;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
@@ -18,41 +19,5 @@ public class ERDiagram {
 	@MongoId
 	private String id;
 	private String diagramName;
-	private List<Element> elements;
-}
-
-@Data
-class Element {
-	private String id;
-	private String shape;
-	private Position position;
-	private Size size;
-	private int zIndex;
-	private NodeData data;
-}
-
-@Data
-class Position {
-	private int x;
-	private int y;
-}
-
-@Data
-class Size {
-	private int width;
-	private int height;
-}
-
-@Data
-class NodeData {
-	private String tableName;
-	private String tableComment;
-	private List<Field> fields;
-}
-
-@Data
-class Field {
-	private String name;
-	private String type;
-	private String comment;
+	private List<JSONObject> elements;
 }

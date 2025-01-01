@@ -35,7 +35,7 @@ public class DiagramServiceImpl extends ServiceImpl<IDiagramMapper, Diagram> imp
 		lambdaUpdate().set(Diagram::getUpdateTime, LocalDateTime.now()).eq(Diagram::getId, erDiagram.getId());
 
 		// 2. 图元素信息插入 MongoDB
-		mongoTemplate.insert(erDiagram);
+		mongoTemplate.save(erDiagram);
     }
 
 	@Override
